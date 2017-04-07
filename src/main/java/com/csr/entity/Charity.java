@@ -1,13 +1,22 @@
 package com.csr.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@Document(collection = "CHARITY")
+//@JsonIgnoreProperties(ignoreUnknown = true)
 public class Charity {
-	
+	//@Id
+	//private String id;
 	private Integer userId;
 	private String ngoName;
 	private String pocName;
-	private Contact contact;
+	private ArrayList<Contact> contact;
+	
 	private String detail;
 	private List<CharityEvent> charityEvent;
 	private String latLong;
@@ -31,10 +40,11 @@ public class Charity {
 	public void setPocName(String pocName) {
 		this.pocName = pocName;
 	}
-	public Contact getContact() {
+
+	public ArrayList<Contact> getContact() {
 		return contact;
 	}
-	public void setContact(Contact contact) {
+	public void setContact(ArrayList<Contact> contact) {
 		this.contact = contact;
 	}
 	public String getDetail() {

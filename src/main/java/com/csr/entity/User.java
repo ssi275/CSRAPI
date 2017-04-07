@@ -1,5 +1,8 @@
 package com.csr.entity;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "USER")
 public class User {
 
 	private String userName;
@@ -52,5 +55,12 @@ public class User {
 		this.userStatus = userStatus;
 	}
 
-		
+	
+	/*@Override
+	public String toString(){
+		return "hi"; //"user{" 
+				//+ "username" + userName +"user type " + userType + "}";
+		 
+	}*/
+	
 }

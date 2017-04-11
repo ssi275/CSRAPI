@@ -2,24 +2,22 @@ package com.csr.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Document(collection = "CHARITY")
-//@JsonIgnoreProperties(ignoreUnknown = true)
+
 public class Charity {
-	//@Id
-	//private String id;
+	
 	private Integer userId;
 	private String ngoName;
-	private String pocName;
+	
 	private ArrayList<Contact> contact;
 	
 	private String detail;
 	private List<CharityEvent> charityEvent;
-	private String latLong;
+	private Long latitude;
+	private Long longitude;
 	private String image;
 	
 	public Integer getUserId() {
@@ -34,13 +32,7 @@ public class Charity {
 	public void setNgoName(String ngoName) {
 		this.ngoName = ngoName;
 	}
-	public String getPocName() {
-		return pocName;
-	}
-	public void setPocName(String pocName) {
-		this.pocName = pocName;
-	}
-
+	
 	public ArrayList<Contact> getContact() {
 		return contact;
 	}
@@ -59,11 +51,19 @@ public class Charity {
 	public void setCharityEvent(List<CharityEvent> charityEvent) {
 		this.charityEvent = charityEvent;
 	}
-	public String getLatLong() {
-		return latLong;
+	
+	
+	public Long getLatitude() {
+		return latitude;
 	}
-	public void setLatLong(String latLong) {
-		this.latLong = latLong;
+	public void setLatitude(Long latitude) {
+		this.latitude = latitude;
+	}
+	public Long getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(Long longitude) {
+		this.longitude = longitude;
 	}
 	public String getImage() {
 		return image;

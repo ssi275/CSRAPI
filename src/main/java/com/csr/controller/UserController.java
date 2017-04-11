@@ -19,48 +19,28 @@ public class UserController {
 	@Autowired
 	private UserRepository userRepository;
 	
-//	@RequestMapping("/")
-//	private String testmethod() {
-//		log.info("test method hit by us");
-//	        return "First Controller";
-//
-//	}
-//	
-	
 	@RequestMapping(value = "/users", method = { RequestMethod.POST })
 	private boolean createUser(@RequestBody User user)
 	{	
 		userRepository.save(user);
-		log.info("create method hit by us");
+		log.info("Inside createUser method of User controller");
 		return true;
 	}
 	
-	//TODO: Need to be changed by user pojo
 	@RequestMapping(value = "/users", method = { RequestMethod.GET })
 	private List<User> getUser()
 	{		
 			List<User> user= userRepository.findAll();
-//			user.get(0).getUserName();
-			System.out.println("" +"hello");
-			log.info("get method hit by us");
+			log.info("Inside getUser method of User controller");
 			return  user;
-//		log.info("get method hit by us");
-//		return "user";
 	}
 	
-	//TODO: Need to be changed by user pojo
 	@RequestMapping(value = "/users", method = { RequestMethod.PUT })
 	private String updateUser()
 	{
-		log.info("put method hit by us");
+		log.info("Inside updateUser method of User controller");
 		return "user";
 	}
 	
-	@RequestMapping(value = "/users", method = { RequestMethod.DELETE })
-	private boolean deleteUser()
-	{
-		log.info("delete method hit by us");
-		return false;
-	}
 
 }

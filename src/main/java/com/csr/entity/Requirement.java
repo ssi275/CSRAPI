@@ -4,7 +4,7 @@ public class Requirement {
 	private String category;
 	private String product;
 	private String quantity;
-	private String status;
+	private boolean status;
 	
 	public String getCategory() {
 		return category;
@@ -24,13 +24,14 @@ public class Requirement {
 	public void setQuantity(String quantity) {
 		this.quantity = quantity;
 	}
-
-	public String getStatus() {
+	public boolean isStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
+
+	
 
 	
 	

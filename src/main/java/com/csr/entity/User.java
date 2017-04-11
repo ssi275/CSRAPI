@@ -9,7 +9,8 @@ public class User {
 	private String password;
 	private String userType;
 	private Integer userId;
-	private Character userStatus;
+	private boolean userStatus;
+	
 	
 	public User() {
 		super();
@@ -47,20 +48,15 @@ public class User {
 		this.userId = userId;
 	}
 
-	public Character getUserStatus() {
+	public boolean isUserStatus() {
 		return userStatus;
 	}
 
-	public void setUserStatus(Character userStatus) {
+	public void setUserStatus(boolean userStatus) {
 		this.userStatus = userStatus;
 	}
 
+
 	
-	/*@Override
-	public String toString(){
-		return "hi"; //"user{" 
-				//+ "username" + userName +"user type " + userType + "}";
-		 
-	}*/
 	
 }

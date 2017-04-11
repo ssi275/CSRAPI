@@ -4,7 +4,7 @@ package com.csr.mongoRepositories;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.csr.entity.Charity;
-import com.csr.entity.CharityEvent;
+//import com.csr.entity.CharityEvent;
 
 
 public interface CharityRepository extends MongoRepository<Charity, String>{

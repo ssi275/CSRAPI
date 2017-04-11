@@ -1,6 +1,8 @@
 package com.csr.entity;
 
 public class Contact {
+	private String pocFirstName;
+	private String pocLastName;
 	private Integer phoneNo;
 	private String email;
 	private String addressLine1;
@@ -10,6 +12,18 @@ public class Contact {
 	private String country;
 	private int pincode;
 	
+	public String getPocFirstName() {
+		return pocFirstName;
+	}
+	public void setPocFirstName(String pocFirstName) {
+		this.pocFirstName = pocFirstName;
+	}
+	public String getPocLastName() {
+		return pocLastName;
+	}
+	public void setPocLastName(String pocLastName) {
+		this.pocLastName = pocLastName;
+	}
 	public Integer getPhoneNo() {
 		return phoneNo;
 	}

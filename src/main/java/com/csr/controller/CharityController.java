@@ -23,20 +23,12 @@ private static final Logger log = LoggerFactory.getLogger(CharityController.clas
 @Autowired
 private CharityRepository charityRepository;
 
-	@RequestMapping("/")
-	private String testmethod() {
-		log.info("test method hit by us");
-	        return "First Controller";
-
-	}
-	
-	
 	@RequestMapping(value = "/charity", method = { RequestMethod.POST })
 	private boolean createCharity(@RequestBody Charity charity)
 	{
 		
 		charityRepository.save(charity);
-		log.info("create method hit by us");
+		log.info("Inside createCharity method of Charity controller");
 		return true;
 	}
 	
@@ -46,8 +38,7 @@ private CharityRepository charityRepository;
 	private List<Charity> getCharity()
 	{	
 		List<Charity> charity= charityRepository.findAll();
-		System.out.println(charity.get(0) +"hello");
-		log.info("get method hit by us");
+		log.info("Inside getCharity method of Charity controller");
 		return charity;
 	}
 	
@@ -55,8 +46,7 @@ private CharityRepository charityRepository;
 	private Charity getCharityDetails(@PathVariable String ngoName)
 	{	
 		Charity charity= charityRepository.findByNgoName(ngoName);
-		//System.out.println(charity.get(0) +"hello");
-		log.info("get method hit by us");
+		log.info("Inside getCharityDetails method of Charity controller");
 		return charity;
 	}
 	
@@ -65,17 +55,10 @@ private CharityRepository charityRepository;
 	{	
 		Charity charityUpdate= charityRepository.findByNgoName(ngoName);
 		charityUpdate.setCharityEvent(charity.getCharityEvent());
-		//charityUpdate.save(charity);
-		log.info("put method hit by us");
+		log.info("Inside updateCharity method of Charity controller");
 		charityRepository.save(charityUpdate);
 		return charityUpdate;
 	}
 	
-	@RequestMapping(value = "/charity", method = { RequestMethod.DELETE })
-	private boolean deleteUser()
-	{
-		log.info("delete method hit by us");
-		return false;
-	}
-
+	
 }

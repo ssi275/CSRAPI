@@ -17,18 +17,21 @@ import com.csr.mongoRepositories.UserRepository;
 public class UserController {
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 	@Autowired
-	private UserRepository userRepository;
+	public static UserRepository userRepository;
 	
 	@RequestMapping(value = "/users", method = { RequestMethod.POST })
-	private boolean createUser(@RequestBody User user)
+	public  boolean createUser(@RequestBody User user)
 	{	
-		userRepository.save(user);
-		log.info("Inside createUser method of User controller");
-		return true;
+		if(user.getUserId()!= null){
+			userRepository.save(user);
+			log.info("Inside createUser method of User controller");
+			return true;}
+		else
+			return false;
 	}
 	
 	@RequestMapping(value = "/users", method = { RequestMethod.GET })
-	private List<User> getUser()
+	public List<User> getUser()
 	{		
 			List<User> user= userRepository.findAll();
 			log.info("Inside getUser method of User controller");
@@ -36,7 +39,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/users", method = { RequestMethod.PUT })
-	private String updateUser()
+	public static String updateUser()
 	{
 		log.info("Inside updateUser method of User controller");
 		return "user";

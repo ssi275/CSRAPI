@@ -24,18 +24,20 @@ private static final Logger log = LoggerFactory.getLogger(CharityController.clas
 private CharityRepository charityRepository;
 
 	@RequestMapping(value = "/charity", method = { RequestMethod.POST })
-	private boolean createCharity(@RequestBody Charity charity)
+	public boolean createCharity(@RequestBody Charity charity)
 	{
-		
-		charityRepository.save(charity);
-		log.info("Inside createCharity method of Charity controller");
-		return true;
+		if(charity.getNgoName() != null){
+			charityRepository.save(charity);
+			log.info("Inside createCharity method of Charity controller");
+			return true;}
+		else
+			return false;
 	}
 	
 	
 	
 	@RequestMapping(value = "/charity", method = { RequestMethod.GET })
-	private List<Charity> getCharity()
+	public List<Charity> getCharity()
 	{	
 		List<Charity> charity= charityRepository.findAll();
 		log.info("Inside getCharity method of Charity controller");
@@ -43,7 +45,7 @@ private CharityRepository charityRepository;
 	}
 	
 	@RequestMapping(value = "/charity/{ngoName}", method = { RequestMethod.GET })
-	private Charity getCharityDetails(@PathVariable String ngoName)
+	public Charity getCharityDetails(@PathVariable String ngoName)
 	{	
 		Charity charity= charityRepository.findByNgoName(ngoName);
 		log.info("Inside getCharityDetails method of Charity controller");

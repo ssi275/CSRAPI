@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.csr.entity.Charity;
+import com.csr.entity.CharityEvent;
+import com.csr.entity.Ngo;
 import com.csr.mongoRepositories.CharityRepository;
+import com.mongodb.BasicDBObject;
 
 @RestController
 public class CharityController {
@@ -29,20 +32,30 @@ private CharityRepository charityRepository;
 		if(charity.getNgoName() != null){
 			charityRepository.save(charity);
 			log.info("Inside createCharity method of Charity controller");
-			return true;}
+			return true;
+			}
 		else
 			return false;
 	}
 	
-	
-	
 	@RequestMapping(value = "/charity", method = { RequestMethod.GET })
+	public Ngo getCharity()
+	{	
+		List<Charity> charity= charityRepository.findAll();
+		log.info("get method hit by us");
+		Ngo ngo = new Ngo();
+		ngo.setNgo(charity);
+		return ngo;
+	}
+
+	
+	/*@RequestMapping(value = "/charity", method = { RequestMethod.GET })
 	public List<Charity> getCharity()
 	{	
 		List<Charity> charity= charityRepository.findAll();
 		log.info("Inside getCharity method of Charity controller");
 		return charity;
-	}
+	}*/
 	
 	@RequestMapping(value = "/charity/{ngoName}", method = { RequestMethod.GET })
 	public Charity getCharityDetails(@PathVariable String ngoName)
@@ -51,6 +64,22 @@ private CharityRepository charityRepository;
 		log.info("Inside getCharityDetails method of Charity controller");
 		return charity;
 	}
+	@RequestMapping(value = "/charity/{ngoName}/event", method = { RequestMethod.POST })
+	public Charity postCharityEvent(@PathVariable String ngoName, @RequestBody CharityEvent event)
+	{	
+		Charity charity= charityRepository.findByNgoName(ngoName);
+		List<CharityEvent> list = charity.getCharityEvent();
+		list.add(event);
+		charity.setCharityEvent(list);
+		charityRepository.save(charity);
+		
+		
+		log.info("Inside getCharityDetails method of Charity controller");
+		return charity;
+	}
+	
+	
+	
 	
 	@RequestMapping(value = "/charity/{ngoName}", method = { RequestMethod.PUT })
 	private Charity updateCharity(@PathVariable String ngoName, @RequestBody Charity charity)

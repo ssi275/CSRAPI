@@ -17,7 +17,7 @@ import com.csr.mongoRepositories.UserRepository;
 public class UserController {
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 	@Autowired
-	public static UserRepository userRepository;
+	private UserRepository userRepository;
 	
 	@RequestMapping(value = "/users", method = { RequestMethod.POST })
 	public  boolean createUser(@RequestBody User user)

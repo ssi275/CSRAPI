@@ -38,24 +38,16 @@ private CharityRepository charityRepository;
 			return false;
 	}
 	
-	@RequestMapping(value = "/charity", method = { RequestMethod.GET })
-	public Ngo getCharity()
-	{	
-		List<Charity> charity= charityRepository.findAll();
-		log.info("get method hit by us");
-		Ngo ngo = new Ngo();
-		ngo.setNgo(charity);
-		return ngo;
-	}
+
 
 	
-	/*@RequestMapping(value = "/charity", method = { RequestMethod.GET })
+	@RequestMapping(value = "/charity", method = { RequestMethod.GET })
 	public List<Charity> getCharity()
 	{	
 		List<Charity> charity= charityRepository.findAll();
 		log.info("Inside getCharity method of Charity controller");
 		return charity;
-	}*/
+	}
 	
 	@RequestMapping(value = "/charity/{ngoName}", method = { RequestMethod.GET })
 	public Charity getCharityDetails(@PathVariable String ngoName)
@@ -64,7 +56,7 @@ private CharityRepository charityRepository;
 		log.info("Inside getCharityDetails method of Charity controller");
 		return charity;
 	}
-	@RequestMapping(value = "/charity/{ngoName}/event", method = { RequestMethod.POST })
+	@RequestMapping(value = "/charity/{ngoName}/{event}", method = { RequestMethod.PUT })
 	public Charity postCharityEvent(@PathVariable String ngoName, @RequestBody CharityEvent event)
 	{	
 		Charity charity= charityRepository.findByNgoName(ngoName);
@@ -73,23 +65,13 @@ private CharityRepository charityRepository;
 		charity.setCharityEvent(list);
 		charityRepository.save(charity);
 		
-		
 		log.info("Inside getCharityDetails method of Charity controller");
 		return charity;
 	}
 	
 	
 	
-	
-	@RequestMapping(value = "/charity/{ngoName}", method = { RequestMethod.PUT })
-	private Charity updateCharity(@PathVariable String ngoName, @RequestBody Charity charity)
-	{	
-		Charity charityUpdate= charityRepository.findByNgoName(ngoName);
-		charityUpdate.setCharityEvent(charity.getCharityEvent());
-		log.info("Inside updateCharity method of Charity controller");
-		charityRepository.save(charityUpdate);
-		return charityUpdate;
-	}
+
 	
 	
 }

@@ -10,4 +10,6 @@ import com.csr.entity.Charity;
 public interface CharityRepository extends MongoRepository<Charity, String>{
 	public Charity findByNgoName(String ngoName);
 	//public CharityEvent findByCause(String cause);
+
+	//public Charity findById(Integer id);
 }

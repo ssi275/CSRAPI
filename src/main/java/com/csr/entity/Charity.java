@@ -2,6 +2,8 @@ package com.csr.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
@@ -9,7 +11,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 public class Charity {
 	
-	private Integer userId;
+	@Id
+	private String ngoId;
 	private String ngoName;
 	
 	private ArrayList<Contact> contact;
@@ -20,11 +23,13 @@ public class Charity {
 	private Long longitude;
 	private String image;
 	
-	public Integer getUserId() {
-		return userId;
+	
+	
+	public String getNgoId() {
+		return ngoId;
 	}
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setNgoId(String ngoId) {
+		this.ngoId = ngoId;
 	}
 	public String getNgoName() {
 		return ngoName;

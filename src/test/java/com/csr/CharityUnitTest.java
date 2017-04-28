@@ -34,7 +34,7 @@ public class CharityUnitTest extends CsrapiApplicationTests{
 	private Charity getCharityStub(){
 		Charity charity = new Charity();
 		charity.setNgoName("cry");
-		charity.setUserId(333);
+		charity.setNgoId("333");
 		return charity;
 	}
 	
@@ -56,7 +56,7 @@ public class CharityUnitTest extends CsrapiApplicationTests{
 		Whitebox.setInternalState(charityController, "charityRepository", charityRepository);
 		Charity charity = charityController.getCharityDetails(entity.getNgoName());
 		assertNotNull(charity);
-		assertEquals(charity.getUserId(),entity.getUserId());
+		assertEquals(charity.getNgoId(),entity.getNgoId());
 	}
 	
 	

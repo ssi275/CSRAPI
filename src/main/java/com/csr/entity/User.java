@@ -9,7 +9,7 @@ public class User {
 	private String userName;
 	private String password;
 	private String userType;
-	private Integer userId;
+	private String userId;
 	private boolean userStatus;
 	
 	
@@ -19,7 +19,7 @@ public class User {
 
 	
 	
-	public User(String userName, String password, String userType, Integer userId, boolean userStatus) {
+	public User(String userName, String password, String userType, String userId, boolean userStatus) {
 		super();
 		this.userName = userName;
 		this.password = password;
@@ -54,11 +54,11 @@ public class User {
 		this.userType = userType;
 	}
 
-	public Integer getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Integer userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 

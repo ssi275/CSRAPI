@@ -69,7 +69,32 @@ private CharityRepository charityRepository;
 		return charity;
 	}
 	
-	
+	@RequestMapping(value = "/charity/{ngoName}/delete/{reqId}", method = { RequestMethod.PUT })
+	public Charity deleteCharityEvent(@PathVariable String ngoName,  @PathVariable String reqId)
+	{	
+		Charity charity= charityRepository.findByNgoName(ngoName);
+		
+		List <CharityEvent> eventList = charity.getCharityEvent();
+		for(CharityEvent cEvent : eventList){
+			List<Requirement> req = cEvent.getRequirement();
+			System.out.println(cEvent.getCause());
+			System.out.println(reqId);
+				for (Requirement temp : req) {
+					if((temp.getReqId()).equals(reqId))	{
+						
+						temp.setStatus(false);
+					}
+				}
+				cEvent.setRequirement(req);
+			}
+		
+		
+		charity.setCharityEvent(eventList);
+
+		charityRepository.save(charity);
+		log.info("Inside deleteCharityEvent method of Charity controller");
+		return charity;
+	}
 	
 
 	

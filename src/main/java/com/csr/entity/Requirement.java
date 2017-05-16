@@ -1,11 +1,19 @@
 package com.csr.entity;
 
 public class Requirement {
+	@Id
+	private String reqId;
 	private String category;
 	private String product;
 	private String quantity;
 	private boolean status;
 	
+	public String getReqId() {
+		return reqId;
+	}
+	public void setReqId(String reqId) {
+		this.reqId = reqId;
+	}
 	public String getCategory() {
 		return category;
 	}

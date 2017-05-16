@@ -1,5 +1,5 @@
 package com.csr.entity;
-
+import org.springframework.data.annotation.Id;
 public class Requirement {
 	@Id
 	private String reqId;

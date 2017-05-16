@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.csr.entity.Charity;
 import com.csr.entity.CharityEvent;
 import com.csr.entity.Ngo;
+import com.csr.entity.Requirement;
 import com.csr.mongoRepositories.CharityRepository;
 import com.mongodb.BasicDBObject;
 

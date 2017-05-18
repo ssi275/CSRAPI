@@ -49,14 +49,16 @@ private CharityRepository charityRepository;
 		log.info("Inside getCharity method of Charity controller");
 		return charity;
 	}
-	
-	@RequestMapping(value = "/charity/{ngoName}", method = { RequestMethod.GET })
-	public Charity getCharityDetails(@PathVariable String ngoName)
+	@RequestMapping(value = "/charity/{ngoId}", method = { RequestMethod.GET })
+	public Charity getCharityDetails(@PathVariable String ngoId)
 	{	
-		Charity charity= charityRepository.findByNgoName(ngoName);
+		System.out.println(ngoId);
+		Charity charity= charityRepository.findByNgoId(ngoId);
+		System.out.println(charity.getNgoName());
 		log.info("Inside getCharityDetails method of Charity controller");
 		return charity;
 	}
+	
 	@RequestMapping(value = "/charity/{ngoName}/{event}", method = { RequestMethod.PUT })
 	public Charity postCharityEvent(@PathVariable String ngoName, @RequestBody CharityEvent event)
 	{	

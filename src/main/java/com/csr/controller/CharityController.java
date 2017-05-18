@@ -49,20 +49,31 @@ private CharityRepository charityRepository;
 		log.info("Inside getCharity method of Charity controller");
 		return charity;
 	}
-	@RequestMapping(value = "/charity/{ngoId}", method = { RequestMethod.GET })
-	public Charity getCharityDetails(@PathVariable String ngoId)
+	@RequestMapping(value = "/charity/{ngoName}", method = { RequestMethod.GET })
+	public Charity getCharityDetails(@PathVariable String ngoName)
 	{	
-		System.out.println(ngoId);
-		Charity charity= charityRepository.findByNgoId(ngoId);
-		System.out.println(charity.getNgoName());
+		Charity charity= charityRepository.findByNgoName(ngoName);
 		log.info("Inside getCharityDetails method of Charity controller");
 		return charity;
 	}
 	
-	@RequestMapping(value = "/charity/{ngoName}/{event}", method = { RequestMethod.PUT })
-	public Charity postCharityEvent(@PathVariable String ngoName, @RequestBody CharityEvent event)
+// 	@RequestMapping(value = "/charity/{ngoName}/{event}", method = { RequestMethod.PUT })
+// 	public Charity postCharityEvent(@PathVariable String ngoName, @RequestBody CharityEvent event)
+// 	{	
+// 		Charity charity= charityRepository.findByNgoName(ngoName);
+// 		List<CharityEvent> list = charity.getCharityEvent();
+// 		list.add(event);
+// 		charity.setCharityEvent(list);
+// 		charityRepository.save(charity);
+		
+// 		log.info("Inside getCharityDetails method of Charity controller");
+// 		return charity;
+// 	}
+	
+	@RequestMapping(value = "/charity/{ngoId}/event", method = { RequestMethod.PUT })
+	public Charity postCharityEvent(@PathVariable String ngoId, @RequestBody CharityEvent event)
 	{	
-		Charity charity= charityRepository.findByNgoName(ngoName);
+		Charity charity= charityRepository.findByNgoId(ngoId);
 		List<CharityEvent> list = charity.getCharityEvent();
 		list.add(event);
 		charity.setCharityEvent(list);
@@ -71,7 +82,6 @@ private CharityRepository charityRepository;
 		log.info("Inside getCharityDetails method of Charity controller");
 		return charity;
 	}
-	
 	@RequestMapping(value = "/charity/{ngoName}/delete/{reqId}", method = { RequestMethod.PUT })
 	public Charity deleteCharityEvent(@PathVariable String ngoName,  @PathVariable String reqId)
 	{	

@@ -34,6 +34,7 @@ public class UserController {
 	public List<User> getUser()
 	{		
 			List<User> user= userRepository.findAll();
+			System.out.println("system variable"+System.getenv("spring.data.mongodb.uri"));
 			log.info("Inside getUser method of User controller");
 			return  user;
 	}

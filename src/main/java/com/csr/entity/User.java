@@ -1,15 +1,17 @@
 package com.csr.entity;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "USER")
 
 public class User {
 
+	@Id
+	private String userId;
 	private String userName;
 	private String password;
 	private String userType;
-	private String userId;
 	private boolean userStatus;
 	
 	

@@ -41,6 +41,7 @@ public class CharityController {
 
 	/**
 	 * This method return Ngo's detail
+	 * 
 	 * @param ngoId
 	 * @return
 	 */
@@ -52,9 +53,10 @@ public class CharityController {
 
 	/**
 	 * This method add new requirement to a Ngo
+	 * 
 	 * @param ngoId
 	 * @param event
-	 * @return 
+	 * @return
 	 */
 	@RequestMapping(value = "/charity/{ngoId}/event", method = { RequestMethod.PUT })
 	public Charity postCharityEvent(@PathVariable String ngoId, @RequestBody CharityEvent event) {
@@ -63,7 +65,7 @@ public class CharityController {
 
 	/**
 	 * @param NgoId
-	 * @param reqId requirementId
+	 * @param reqId requirementId 
 	 * This method update the requirement status to false for requirement with redId of NGO with NgoId
 	 * @return updated Ngo
 	 */

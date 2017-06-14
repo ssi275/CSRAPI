@@ -32,7 +32,7 @@ public class CharityServiceImpl implements CharityService {
 	}
 
 	/**
-	 * This method fetch Ngo List
+	 * This method is to fetch Ngo List
 	 */
 	@Override
 	public List<Charity> fetchNgoList() {
@@ -56,7 +56,7 @@ public class CharityServiceImpl implements CharityService {
 	/**
 	 * @param ngoId
 	 * @param event
-	 *  CharityEvent This method add new requirement to Ngo
+	 *            CharityEvent This method add new requirement to Ngo
 	 */
 	@Override
 	public Charity addNewRequirement(String ngoId, CharityEvent event) {
@@ -68,25 +68,25 @@ public class CharityServiceImpl implements CharityService {
 		return charity;
 	}
 
-	
 	/**
-	 *  This method update the requirement status to false 
+	 * @param ngoId
+	 * @param ReqId
+	 * This method update the requirement status to false if the
+	 * requirement has been removed
 	 */
 	@Override
 	public Charity removeRequirement(String ngoId, String reqId) {
 		Charity charity = readDao.getNgoDetail(ngoId);
 		List<CharityEvent> eventList = charity.getCharityEvent();
-		for (CharityEvent cEvent : eventList) {
-			List<Requirement> req = cEvent.getRequirement();
-			System.out.println(cEvent.getCause());
-			System.out.println(reqId);
-			for (Requirement temp : req) {
-				if ((temp.getReqId()).equals(reqId)) {
+		for (CharityEvent Event : eventList) {
+			List<Requirement> requirementList = Event.getRequirement();
+			for (Requirement req : requirementList) {
+				if ((req.getReqId()).equals(reqId)) {
 
-					temp.setStatus(false);
+					req.setStatus(false);
 				}
 			}
-			cEvent.setRequirement(req);
+			Event.setRequirement(requirementList);
 		}
 
 		charity.setCharityEvent(eventList);

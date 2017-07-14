@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.csr.entity.User;
 import com.csr.mongoRepositories.UserRepository;
+import com.csr.service.impl.AESencrp;
 
 @RestController
 public class UserController {
@@ -43,46 +44,58 @@ public class UserController {
 		return "user";
 	}
 
+		
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String LoginUser(@RequestBody User user) {
+	public User LoginUser(@RequestBody User user) throws Exception {
 		String userId = user.getUserId();
 		String password = user.getPassword();
 		User U = userRepository.findByUserId(userId);
+		System.out.println(U);
+	if(U==null){	
+		user.setUserId("N");
+		return user;
+		 }
 
-		if (null != U && (U.getUserId().equals(userId)) && (U.getPassword().equals(password))) {
-			return "welcome";
-		} else if (null == U) {
-			return "You need to register";
-		} else {
-			return "Wrong Credentials";
-		}
-
+	else if (null != U && (U.getUserId().equals(userId)) && (AESencrp.decrypt(U.getPassword()).equals(password)))  {
+			return U;
+		} 
+	
+	else {
+		user.setUserId("W");
+		return user;
+	}
+	
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public void AddNewUser(@RequestBody User newUser) {
-
-		List<User> list = userRepository.findAll();
-		for (int i = 0; i < list.size(); i++) {
-			User u = list.get(i);
-			if (null != newUser.getUserId() && null != newUser.getPassword() && null != newUser.getUserName()
-					&& null != newUser.getUserType()) {
+	public void AddNewUser(@RequestBody User newUser) throws Exception {
+		
+		if (null != newUser.getUserId() && null != newUser.getPassword() && null != newUser.getUserName()
+				&& null != newUser.getUserType()) {
+			System.out.println("please enter your crednetials");
+		}
+		else {
+			int check=1;
+			List<User> list = userRepository.findAll();
+			for (int i = 0; i < list.size(); i++) {
+				User u = list.get(i);
 				if (newUser.getUserId().equals(u.getUserId())) {
 					System.out.println("User Already exist");
-
-				} else {
-					User user = new User();
-					user.setUserId(newUser.getUserId());
-					user.setPassword(newUser.getPassword());
-					user.setUserName(newUser.getUserName());
-					user.setUserType(newUser.getUserType());
-					userRepository.save(user);
-
+					check=0;
+					break;
 				}
+				
+				
 			}
-
+			if(check==1){
+				User user = new User();
+				user.setUserId(newUser.getUserId());
+				String passwordEnc = AESencrp.encrypt(newUser.getPassword());
+				user.setPassword(passwordEnc );
+				user.setUserName(newUser.getUserName());
+				user.setUserType(newUser.getUserType());
+				user.setUserStatus(true);
+				userRepository.save(user);}
 		}
-
 	}
-
 }

@@ -19,8 +19,8 @@ public class Charity {
 	
 	private String detail;
 	private List<CharityEvent> charityEvent;
-	private Long latitude;
-	private Long longitude;
+	private String latitude;
+	private String longitude;
 	private String image;
 	
 	
@@ -57,17 +57,16 @@ public class Charity {
 		this.charityEvent = charityEvent;
 	}
 	
-	
-	public Long getLatitude() {
+	public String getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(Long latitude) {
+	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
-	public Long getLongitude() {
+	public String getLongitude() {
 		return longitude;
 	}
-	public void setLongitude(Long longitude) {
+	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
 	public String getImage() {

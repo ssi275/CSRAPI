@@ -40,8 +40,8 @@ public class SearchServiceImpl implements SearchService {
 		ValueComparator bvc = new ValueComparator(map);
 		TreeMap<String, Double> sorted_map = new TreeMap<String, Double>(bvc);
 		for (Charity ngo : ngoList) {
-			double latitude = Double.parseDouble(ngo.getLatitude());
-			double longitude = Double.parseDouble(ngo.getLongitude());
+			double latitude = ngo.getLatitude();
+		double longitude = ngo.getLongitude();
 			double distance = calculateDistance(lat, lon, latitude, longitude);
 			if (distance < Integer.parseInt(environment.getProperty("distance"))) {
 				map.put(ngo.getNgoId(), distance);

@@ -70,8 +70,8 @@ public class UserController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public void AddNewUser(@RequestBody User newUser) throws Exception {
 		
-		if (null != newUser.getUserId() && null != newUser.getPassword() && null != newUser.getUserName()
-				&& null != newUser.getUserType()) {
+		if (null == newUser.getEmailId() && null == newUser.getPassword() && null == newUser.getUserName()
+				&& null == newUser.getUserType()) {
 			System.out.println("please enter your crednetials");
 		}
 		else {
@@ -79,7 +79,7 @@ public class UserController {
 			List<User> list = userRepository.findAll();
 			for (int i = 0; i < list.size(); i++) {
 				User u = list.get(i);
-				if (newUser.getUserId().equals(u.getUserId())) {
+				if (newUser.getEmailId().equals(u.getEmailId())) {
 					System.out.println("User Already exist");
 					check=0;
 					break;
@@ -89,7 +89,7 @@ public class UserController {
 			}
 			if(check==1){
 				User user = new User();
-				user.setUserId(newUser.getUserId());
+				user.setEmailId(newUser.getEmailId());
 				String passwordEnc = AESencrp.encrypt(newUser.getPassword());
 				user.setPassword(passwordEnc );
 				user.setUserName(newUser.getUserName());

@@ -29,7 +29,7 @@ public class ReadDaoImpl implements ReadDao{
 			int length = requirementList.size();
 			int count = 1;
 			for (Requirement req : requirementList) {
-				if (req.isStatus()) {
+				if (!req.isStatus()) {
 
 					break;
 				}

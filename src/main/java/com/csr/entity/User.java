@@ -9,6 +9,7 @@ public class User {
 
 	@Id
 	private String userId;
+	private String emailId;
 	private String userName;
 	private String password;
 	private String userType;
@@ -21,7 +22,7 @@ public class User {
 
 	
 	
-	public User(String userName, String password, String userType, String userId, boolean userStatus) {
+	public User(String userName, String password, String userType, String userId, boolean userStatus, String emailId) {
 		super();
 		this.userName = userName;
 		this.password = password;
@@ -70,6 +71,18 @@ public class User {
 
 	public void setUserStatus(boolean userStatus) {
 		this.userStatus = userStatus;
+	}
+
+
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 
 

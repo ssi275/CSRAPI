@@ -27,7 +27,7 @@ public class ReadDaoImpl implements ReadDao{
 		for (CharityEvent Event : eventList) {
 			List<Requirement> requirementList = Event.getRequirement();
 			int length = requirementList.size();
-			int count = 1;
+			int count = 0;
 			for (Requirement req : requirementList) {
 				if (req.isStatus()) {
 

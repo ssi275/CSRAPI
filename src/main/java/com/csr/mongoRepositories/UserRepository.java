@@ -9,6 +9,7 @@ import com.csr.entity.User;
 
 public interface UserRepository extends MongoRepository<User, String>{
 	public User findByUserId( String userId);
+	public User findByEmailId(String emailId);
 	//public Charity findByNgoId(String ngoId);
 	public List<User> findAll();
 

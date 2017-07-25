@@ -49,7 +49,7 @@ public class UserController {
 	public User LoginUser(@RequestBody User user) throws Exception {
 		String emailId = user.getEmailId();
 		String password = user.getPassword();
-		User U = userRepository.findByUserId(emailId);
+		User U = userRepository.findByEmailId(emailId);
 		System.out.println(U);
 	if(U==null){	
 		user.setUserId("N");

@@ -47,16 +47,16 @@ public class UserController {
 		
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public User LoginUser(@RequestBody User user) throws Exception {
-		String userId = user.getUserId();
+		String emailId = user.getEmailId();
 		String password = user.getPassword();
-		User U = userRepository.findByUserId(userId);
+		User U = userRepository.findByUserId(emailId);
 		System.out.println(U);
 	if(U==null){	
 		user.setUserId("N");
 		return user;
 		 }
 
-	else if (null != U && (U.getUserId().equals(userId)) && (AESencrp.decrypt(U.getPassword()).equals(password)))  {
+	else if (null != U && (U.getEmailId().equals(emailId)) && (AESencrp.decrypt(U.getPassword()).equals(password)))  {
 			return U;
 		} 
 	

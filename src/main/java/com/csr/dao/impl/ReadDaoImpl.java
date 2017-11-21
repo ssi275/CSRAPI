@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.csr.dao.ReadDao;
+import com.csr.entity.Category;
 import com.csr.entity.Charity;
 import com.csr.entity.CharityEvent;
 import com.csr.entity.Requirement;
+import com.csr.mongoRepositories.CategoryRepository;
 import com.csr.mongoRepositories.CharityRepository;
 
 @Repository
@@ -18,6 +20,9 @@ public class ReadDaoImpl implements ReadDao{
 	
 	@Autowired
 	CharityRepository charityRepository;
+	
+	@Autowired
+	CategoryRepository categoryRepository;
 	
 	@Override
 	public Charity getNgoDetail(String ngoId) {
@@ -52,4 +57,8 @@ public class ReadDaoImpl implements ReadDao{
 		return charityRepository.findAll();
 	}
 
+	@Override
+	public List<Category> getCategoryList() {
+	    return categoryRepository.findAll();
+	}
 }

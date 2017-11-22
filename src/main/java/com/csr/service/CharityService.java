@@ -15,5 +15,5 @@ public interface CharityService {
 
 	public Charity addNewRequirement(String ngoId, CharityEvent event);
 
-	public Charity removeRequirement(String ngoId, String reqId);
+	public Charity removeRequirement(String ngoId, String[] reqId);
 }
